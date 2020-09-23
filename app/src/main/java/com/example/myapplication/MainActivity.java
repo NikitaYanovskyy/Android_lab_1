@@ -31,42 +31,55 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 int[] naturalNumbers = new int[20];
 
-                if(inputt.getText().toString().startsWith("0") || inputt.getText().toString().length() > 6){
+
+
+
+                if(inputt.getText().toString().matches("")){
                     //Toast creation
-                    Context context = getApplicationContext();
-                    CharSequence text = "Некоректне число";
-                    int duration = Toast.LENGTH_SHORT;
+                    Context ccontext = getApplicationContext();
+                    CharSequence ttext = "Некоректне число";
+                    int dduration = Toast.LENGTH_SHORT;
 
-                    Toast toast_unvalid = Toast.makeText(context, text, duration);
-                    toast_unvalid.show();
+                    Toast toast_empty = Toast.makeText(ccontext, ttext, dduration);
+                    toast_empty.show();
                 }else{
-                    int inputToNumber = Integer.parseInt(inputt.getText().toString());
-                    int arrayCounter = 0;
-
-                    if(inputToNumber <= 0){
+                    if(inputt.getText().toString().startsWith("0") || inputt.getText().toString().length() > 6){
                         //Toast creation
                         Context context = getApplicationContext();
-                        CharSequence text = "Число має бути більше або рівне 0";
+                        CharSequence text = "Некоректне число";
                         int duration = Toast.LENGTH_SHORT;
 
-                        Toast toast_less_then_zero = Toast.makeText(context, text, duration);
-                        toast_less_then_zero.show();
+                        Toast toast_unvalid = Toast.makeText(context, text, duration);
+                        toast_unvalid.show();
                     }else{
-                        for (int i = 1; i < inputToNumber; i++){
-                            if(inputToNumber % i == 0){
-                                naturalNumbers[arrayCounter] = i;
-                                arrayCounter++;
+                        int inputToNumber = Integer.parseInt(inputt.getText().toString());
+                        int arrayCounter = 0;
+
+                        if(inputToNumber <= 0){
+                            //Toast creation
+                            Context context = getApplicationContext();
+                            CharSequence text = "Число має бути більше або рівне 0";
+                            int duration = Toast.LENGTH_SHORT;
+
+                            Toast toast_less_then_zero = Toast.makeText(context, text, duration);
+                            toast_less_then_zero.show();
+                        }else{
+                            for (int i = 1; i <= inputToNumber; i++){
+                                if(inputToNumber % i == 0){
+                                    naturalNumbers[arrayCounter] = i;
+                                    arrayCounter++;
+                                }
                             }
-                        }
 
-                        String outputString = "";
-                        int whileCounter = 0;
-                        while (naturalNumbers[whileCounter] != 0){
-                            outputString += Integer.toString(naturalNumbers[whileCounter]) + "  ";
-                            whileCounter++;
-                        }
+                            String outputString = "";
+                            int whileCounter = 0;
+                            while (naturalNumbers[whileCounter] != 0){
+                                outputString += Integer.toString(naturalNumbers[whileCounter]) + "  ";
+                                whileCounter++;
+                            }
 
-                        outputt.setText(outputString);
+                            outputt.setText(outputString);
+                        }
                     }
                 }
             }
